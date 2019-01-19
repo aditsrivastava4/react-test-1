@@ -11,7 +11,7 @@ class User(Base):
 	"""
 	class User will store data of users how sign up or login without any OAuth.
 	Parameters
-	username: Store Username(String)
+	name: Store Name(String)
 	email: Store user Email(String)
 	password_hash: Store hashed password(String)
 	Functions

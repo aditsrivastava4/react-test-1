@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base, User, OAuth_User, Category, Category_Items
+from models import Base, User
 
-engine = create_engine('sqlite:///ItemCatalog.db')
+# Handle all database operations
+engine = create_engine('postgresql://postgres:{}@localhost/chatdata'.format('94532@dit'))
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 
@@ -14,6 +15,7 @@ def get_User(email):
     session = DBSession()
     data = session.query(User).filter_by(email=email).one_or_none()
     session.close_all()
+    print(data)
     return data
 
 
@@ -22,10 +24,7 @@ def verify_UserPassword(email, password):
     verify_UserPassword(email, password)
             Verify local users password at the time of login
     """
-    session = DBSession()
-    data = session.query(User).filter_by(email=email).one_or_none()
-    result = data.verify_password(password)
-    session.close_all()
+    result = get_User(email).verify_password(password)
     return result
 
 
@@ -38,7 +37,7 @@ def add_SignUp(user_data):
     if not data:
         session = DBSession()
         user = User(
-            username=user_data['username'],
+            name=user_data['name'],
             email=user_data['email']
         )
         user.hash_password(user_data['password'])
