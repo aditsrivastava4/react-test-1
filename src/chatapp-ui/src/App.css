@@ -1,0 +1,10 @@
+.App {
+    text-align: center;
+}
+.containerWidth {
+    width: 90%;
+}
+.ui.grid {
+    margin-left: auto;
+    margin-right: auto;
+}
