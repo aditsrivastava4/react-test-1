@@ -15,9 +15,6 @@ class Login extends Component {
     formSubmit(event) {
         event.preventDefault();
         console.log('hola')
-        // this.setState({
-        //     invalid: !this.state.invalid
-        // })
     }
     loginValue(event) {
         // change state of each value

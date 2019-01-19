@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 class NavBar extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+
+        }
+    }
     render() {
         return (
             <div className="container-fluid">
@@ -17,13 +23,6 @@ class NavBar extends Component {
                         </div>
                         <div id="navbar" className="navbar-collapse collapse">
                             <ul className="nav navbar-nav navbar-right paddingul">
-                                <li>
-                                    <a href="/login">
-                                        <span className="glyphicon glyphicon-log-in">
-                                        </span>
-                                        &nbsp;Login
-                                    </a>
-                                </li>
                                 <li>
                                     <a href="/logout">
                                         <span className="glyphicon glyphicon-log-out">
