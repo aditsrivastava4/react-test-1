@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Input } from 'semantic-ui-react';
+import Cookies from 'js-cookie';
 
 class Login extends Component {
     constructor(props) {
@@ -14,7 +15,29 @@ class Login extends Component {
     }
     formSubmit(event) {
         event.preventDefault();
-        console.log('hola')
+        let loginData = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        fetch('/login',{
+            method: 'post',
+            headers: this.props.loginRequest,
+            body: JSON.stringify(loginData)
+        })
+        .then((response) => {
+            if(response.status == 200) {
+                Cookies.set('loggedIn', true, {
+                    expires: 0.5
+                })
+                this.props.onLogIn();
+            } else if(response.status == 401) {
+                this.setState({
+                    invalid: true
+                })
+            } else {
+                alert('Bad Request')
+            }
+        })
     }
     loginValue(event) {
         // change state of each value

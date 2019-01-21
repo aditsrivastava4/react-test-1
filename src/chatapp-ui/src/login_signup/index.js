@@ -4,17 +4,20 @@ import SignUp from './signup';
 import { Grid } from 'semantic-ui-react';
 
 class LoginSignUp extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
         return (
             <Grid divided className="containerWidth">
                 <Grid.Row columns={2}>
                     <Grid.Column>
                         <h1>Login</h1>
-                        <Login />
+                        <Login onLogIn = { this.props.onLogIn } loginRequest = { this.props.loginRequest }/>
                     </Grid.Column>
                     <Grid.Column>
                         <h1>SignUp</h1>
-                        <SignUp />
+                        <SignUp onLogIn = { this.props.onLogIn } loginRequest = { this.props.loginRequest }/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

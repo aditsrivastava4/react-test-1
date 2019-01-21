@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Input } from 'semantic-ui-react';
+import Cookies from 'js-cookie';
 
 class SignUp extends Component {
     constructor(props) {
@@ -11,13 +12,36 @@ class SignUp extends Component {
             invalid: false
         }
         this.formSubmit = this.formSubmit.bind(this)
-        this.loginValue = this.loginValue.bind(this)
+        this.signUpValue = this.signUpValue.bind(this)
     }
     formSubmit(event) {
         event.preventDefault();
-        console.log(this.state)
+        let signUpData = {
+            email: this.state.email,
+            password: this.state.password,
+            name: this.state.name
+        }
+        fetch('/signUp',{
+            method: 'POST',
+            headers: this.props.loginRequest,
+            body: JSON.stringify(signUpData)
+        })
+        .then((response) => {
+            if(response.status == 200) {
+                Cookies.set('loggedIn', true, {
+                    expires: 0.5
+                })
+                this.props.onLogIn();
+            } else if(response.status == 409) {
+                this.setState({
+                    invalid: true
+                })
+            } else {
+                alert('Bad Request')
+            }
+        })
     }
-    loginValue(event) {
+    signUpValue(event) {
         // change state of each value
         event.preventDefault();
         this.setState({
@@ -30,23 +54,23 @@ class SignUp extends Component {
                 <Form.Field className="form-group">
                     <label className="control-label col-sm-2">Name</label>
                     <div className="col-sm-10">
-                        <Input name="email" type="text" onChange={ this.loginValue }/>
+                        <Input name="name" type="text" onChange={ this.signUpValue }/>
                     </div>
                 </Form.Field>
                 <Form.Field className="form-group">
                     <label className="control-label col-sm-2">Email</label>
                     <div className="col-sm-10">
-                        <Input name="email" type="email" onChange={ this.loginValue }/>
+                        <Input name="email" type="email" onChange={ this.signUpValue }/>
                     </div>
                 </Form.Field>
                 <Form.Field className="form-group">
                     <label className="control-label col-sm-2">Password</label>
                     <div className="col-sm-10">
-                        <Input name="password" type="password" onChange={ this.loginValue }/>
+                        <Input name="password" type="password" onChange={ this.signUpValue }/>
                     </div>
                 </Form.Field>
                 { this.state.invalid? 
-                    <label className="text-danger">*Invalid Email or Password</label>:
+                    <label className="text-danger">*User Already Exists</label>:
                     ""
                 }
                 <Form.Field className="form-group">

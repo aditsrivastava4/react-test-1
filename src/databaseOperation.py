@@ -15,7 +15,6 @@ def get_User(email):
     session = DBSession()
     data = session.query(User).filter_by(email=email).one_or_none()
     session.close_all()
-    print(data)
     return data
 
 
@@ -44,3 +43,6 @@ def add_SignUp(user_data):
         session.add(user)
         session.commit()
         session.close_all()
+        return True
+    else:
+        return False
