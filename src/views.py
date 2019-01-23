@@ -2,18 +2,13 @@ from flask import Flask, render_template
 from flask import request, redirect, jsonify
 from flask import session, make_response
 import databaseOperation as crud
-import pusher, json
+import json
 import string, random
 
-app = Flask(__name__)
+from chat.Chat import chat
 
-pusher_client = pusher.Pusher(
-    app_id='694117',
-    key='ad40515b013be9d631f6',
-    secret='9a6d13f3ac832c22119c',
-    cluster='ap2',
-    ssl=True
-)
+app = Flask(__name__)
+app.register_blueprint(chat)
 
 @app.route('/')
 def index():
