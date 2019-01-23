@@ -66,9 +66,6 @@ class Login extends Component {
                     <label className="text-danger">*Invalid Email or Password</label>:
                     ""
                 }
-                <Form.Field>
-                    <a href="/"><label>Forget Password?</label></a>
-                </Form.Field>
                 <Form.Field className="form-group">
                     <Button type="submit">Login</Button>
                 </Form.Field>

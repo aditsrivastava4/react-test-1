@@ -1,10 +1,39 @@
+html, body {
+    height: 100%;
+    background: gray;
+    overflow: hidden;
+}
 .App {
     text-align: center;
+    height: inherit;
+    background: #F0F8FF;
+}
+#root {
+    height: inherit;
 }
 .containerWidth {
     width: 90%;
 }
 .ui.grid {
+    margin-left: auto;
+    margin-right: auto;
+}
+.border {
+    border-radius: 20px;
+    border: 1.5px solid;
+    padding: 0.4% 1%;
+    width: fit-content;
+    max-width: 600px;
+}
+.user {
+    font-weight: 400;
+    font-size: .6em;
+}
+
+.ui.segment {
+    max-height: 400px;
+    overflow-y: scroll;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
 }

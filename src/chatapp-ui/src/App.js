@@ -59,12 +59,20 @@ class App extends Component {
         })
     }
     render() {
+        if(this.state.csrfToken==null) {
+            return (
+                <div className="App container">
+                    <NavBar loggedIn = { this.state.loggedIn }/>
+                    <div>Loading....</div>
+                </div>
+            )
+        }
         return (
             <div className="App container">
-                <NavBar loggedIn = { this.state.loggedIn } />
+                <NavBar loggedIn = { this.state.loggedIn }/>
                 { !this.state.loggedIn?
                     <LoginSignUp onLogIn = { this.is_loggedIn } loginRequest = { this.state.csrfToken }/> :
-                    <Chat />
+                    <Chat chatRequest = { this.state.csrfToken }/>
                 }
             </div>
         );
