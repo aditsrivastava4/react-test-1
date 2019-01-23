@@ -1,19 +1,24 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base, User
+from models import Base, User, ChatMessage
 
 # Handle all database operations
 engine = create_engine('postgresql://postgres:{}@localhost/chatdata'.format('94532@dit'))
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 
-def get_User(email):
+def get_User(email = None, id = None):
     """
     get_User(email)
             Get detail of local users
     """
     session = DBSession()
-    data = session.query(User).filter_by(email=email).one_or_none()
+    if email:
+        data = session.query(User).filter_by(email = email).one_or_none()
+    elif id:
+        data = session.query(User).filter_by(id = id).one_or_none()
+    else:
+        raise TypeError('get_User() Requires at 1 Argument(email or id)')
     session.close_all()
     return data
 
@@ -36,8 +41,8 @@ def add_SignUp(user_data):
     if not data:
         session = DBSession()
         user = User(
-            name=user_data['name'],
-            email=user_data['email']
+            name = user_data['name'],
+            email = user_data['email']
         )
         user.hash_password(user_data['password'])
         session.add(user)
@@ -46,3 +51,23 @@ def add_SignUp(user_data):
         return True
     else:
         return False
+
+def addMsg(msgData):
+    from_user = get_User(msgData['email'])
+    session = DBSession()
+    msg = ChatMessage(
+        message = msgData['message'],
+        user = from_user
+    )
+    session.add(msg)
+    session.commit()
+    session.close_all()
+
+def getMsg(id = None):
+    session = DBSession()
+    if id:
+        msgData = session.query(ChatMessage).filter_by(id = id).one_or_none()
+    else:
+        msgData = session.query(ChatMessage).all()
+    session.close_all()
+    return msgData
