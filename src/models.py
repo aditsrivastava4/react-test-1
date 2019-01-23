@@ -1,8 +1,9 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 from passlib.hash import pbkdf2_sha256
+import datetime
 
 Base = declarative_base()
 
@@ -16,11 +17,11 @@ class User(Base):
 	password_hash: Store hashed password(String)
 	Functions
 	hash_password(password)
-	  Takes a parameter password(String) as input and
-	  hash it using passlib.hash.pbkdf2_sha256 and store it in password_hash.
+        Takes a parameter password(String) as input and
+        hash it using passlib.hash.pbkdf2_sha256 and store it in password_hash.
 	verify_password(password)
-	  Takes a parameter password(String) as input and
-	  verify it if matches the stored password_hash using passlib.hash.pbkdf2_sha256.
+        Takes a parameter password(String) as input and
+        verify it if matches the stored password_hash using passlib.hash.pbkdf2_sha256.
 	"""
 	__tablename__ = 'user'
 	id = Column(Integer, primary_key=True)
@@ -33,6 +34,15 @@ class User(Base):
 
 	def verify_password(self, password):
 		return pbkdf2_sha256.verify(password, self.password_hash)
+
+
+class ChatMessage(Base):
+    __tablename__ = 'chat_message'
+    id = Column(Integer, primary_key=True)
+    message = Column(String)
+    timeStamp = Column(DateTime, default=datetime.datetime.now)
+    from_user = Column(Integer, ForeignKey('user.id'))
+    user = relationship('User')
 
 engine = create_engine('postgresql://postgres:{}@localhost/chatdata'.format('94532@dit'))
 Base.metadata.create_all(engine)
