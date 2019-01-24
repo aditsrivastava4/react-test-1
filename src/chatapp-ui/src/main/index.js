@@ -23,6 +23,7 @@ class Chat extends Component {
         })
     }
     handleSubmit(event) {
+        // on message form submit
         event.preventDefault()
         fetch('/send_message',{
             method: 'post',
@@ -53,12 +54,10 @@ class Chat extends Component {
                 <Grid.Row columns={1}>
                     <Grid.Column>
                         <h1>Chat</h1>
-                        <Segment >
-                            { this.state.data != null?
-                                <MsgFeed data={ this.state.data }/> :
-                                ""
-                            }
-                        </Segment>
+                        { this.state.data != null?
+                            <MsgFeed chatBox={ this.myRef } latestMsg={ this.latestMsg } data={ this.state.data }/> :
+                            ""
+                        }
                         <Form onSubmit={ this.handleSubmit }>
                             <Form.Field className="form-group">
                                 <div className="col-sm-10">

@@ -51,11 +51,13 @@ def syncChat():
             if session['loggedIn']:
                 message = crud.getMsg()
                 data = []
+                from_user = crud.get_User(id = msg.from_user)
                 for msg in message:
                     data.append({
                         'message': msg.message,
                         'timeStamp': msg.timeStamp.strftime('%d-%m-%Y %H:%M'),
-                        'from_user': crud.get_User(id = msg.from_user).name
+                        'from_user': from_user.name,
+                        'email': from_user.email
                     })
                 
                 response = make_response(jsonify(data))

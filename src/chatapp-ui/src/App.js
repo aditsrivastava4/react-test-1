@@ -21,7 +21,7 @@ class App extends Component {
         this.setState({
             loggedIn: true
         })
-        if(Cookies.get('email') == undefined) {
+        if(Cookies.get('email') === undefined) {
             this.getRequest()
         }
     }
@@ -59,7 +59,7 @@ class App extends Component {
         })
     }
     render() {
-        if(this.state.csrfToken==null) {
+        if(this.state.csrfToken===null) {
             return (
                 <div className="App container">
                     <NavBar loggedIn = { this.state.loggedIn }/>

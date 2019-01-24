@@ -17,7 +17,8 @@
     "eject": "react-scripts eject",
     "collect": "react-scripts build && npm run movestatic && npm run movetemplate",
     "movestatic": "copyfiles -f build/static/js/*.js ../static/js/ && copyfiles -f build/static/css/*.css ../static/css/",
-    "movetemplate": "copyfiles -f build/index.html ../templates/"
+    "movetemplate": "copyfiles -f build/index.html ../templates/",
+    "setupStatic": "yarn install && yarn collect"
   },
   "eslintConfig": {
     "extends": "react-app"
