@@ -30,7 +30,7 @@ class App extends Component {
             method: 'post'
         })
         .then((response) => {
-            if(response.headers.get('email') != undefined) {
+            if(response.headers.get('email') !== undefined) {
                 Cookies.set('name', response.headers.get('name'), {
                     expires: 0.5
                 })

@@ -27,12 +27,12 @@ class SignUp extends Component {
             body: JSON.stringify(signUpData)
         })
         .then((response) => {
-            if(response.status == 200) {
+            if(response.status === 200) {
                 Cookies.set('loggedIn', true, {
                     expires: 0.5
                 })
                 this.props.onLogIn();
-            } else if(response.status == 409) {
+            } else if(response.status === 409) {
                 this.setState({
                     invalid: true
                 })

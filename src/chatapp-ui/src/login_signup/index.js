@@ -4,9 +4,6 @@ import SignUp from './signup';
 import { Grid } from 'semantic-ui-react';
 
 class LoginSignUp extends Component {
-    constructor(props) {
-        super(props)
-    }
     render() {
         return (
             <Grid divided className="containerWidth">

@@ -25,12 +25,12 @@ class Login extends Component {
             body: JSON.stringify(loginData)
         })
         .then((response) => {
-            if(response.status == 200) {
+            if(response.status === 200) {
                 Cookies.set('loggedIn', true, {
                     expires: 0.5
                 })
                 this.props.onLogIn();
-            } else if(response.status == 401) {
+            } else if(response.status === 401) {
                 this.setState({
                     invalid: true
                 })

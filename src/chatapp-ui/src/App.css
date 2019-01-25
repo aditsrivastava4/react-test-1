@@ -1,12 +1,12 @@
 html, body {
     height: 100%;
-    background: gray;
+    background: lightgrey;
     overflow: hidden;
 }
 .App {
     text-align: center;
     height: inherit;
-    background: #F0F8FF;
+    background: #f5f5f5;
 }
 #root {
     height: inherit;
@@ -19,6 +19,7 @@ html, body {
     margin-right: auto;
 }
 .border {
+    background: #FFF;
     border-radius: 20px;
     border: 1.5px solid;
     padding: 0.4% 1%;
@@ -32,7 +33,7 @@ html, body {
 
 .chatBox {
     border: 2px solid;
-    background: white;
+    background: #FFF;
     max-height: 400px;
     overflow-y: scroll;
     width: 80%;
@@ -41,4 +42,16 @@ html, body {
     padding: 2%;
     margin-bottom: 1%;
     border-radius: 10px;
+}
+#currentUser {
+    background: lightcyan;
+    float: right;
+}
+input {
+    border: 1px solid;
+}
+
+.navbar-default {
+    background-color: #e3e6eb;
+    border-color: #b4b0b0;
 }

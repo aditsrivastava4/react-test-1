@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Grid, Segment, Feed } from 'semantic-ui-react'
+import { Form, Input, Button, Grid } from 'semantic-ui-react'
 import MsgFeed from './msgFeed'
 
 class Chat extends Component {
@@ -7,8 +7,7 @@ class Chat extends Component {
         super(props)
         this.state = {
             message: null,
-            data: null,
-            input: null
+            data: null
         }
         this.newMsg = this.newMsg.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -16,10 +15,10 @@ class Chat extends Component {
         this.chatSync()
     }
     newMsg(event) {
+        // To keep the track of the input field
         event.preventDefault()
         this.setState({
             [event.target.name]: event.target.value,
-            input: event.target
         })
     }
     handleSubmit(event) {
@@ -31,10 +30,13 @@ class Chat extends Component {
             body: JSON.stringify(this.state.message)
         })
         .then((response) => {
-            this.state.input.value = null
+            this.setState({
+                message: ""
+            })
         })
     }
     chatSync() {
+        // To Get all the Chat data
         fetch('/syncChat',{
             method: 'post',
             headers: this.props.chatRequest
@@ -54,6 +56,7 @@ class Chat extends Component {
                 <Grid.Row columns={1}>
                     <Grid.Column>
                         <h1>Chat</h1>
+                        {/* Chat Box */}
                         { this.state.data != null?
                             <MsgFeed chatBox={ this.myRef } latestMsg={ this.latestMsg } data={ this.state.data }/> :
                             ""
@@ -61,7 +64,7 @@ class Chat extends Component {
                         <Form onSubmit={ this.handleSubmit }>
                             <Form.Field className="form-group">
                                 <div className="col-sm-10">
-                                    <Input name="message" type="text" placeholder="Type Your Message" onChange={ this.newMsg } required/>
+                                    <Input focus name="message" type="text" placeholder="Type Your Message" value={ this.state.message } onChange={ this.newMsg } required />
                                 </div>
                                 <div className="col-sm-2">
                                     <Button type="submit">Send</Button>

@@ -8,7 +8,7 @@ class MsgFeed extends Component {
         super(props)
         this.state = {
             data: this.props.data,
-            user: Cookies.get('email')
+            email: Cookies.get('email')
         }
         this.receiveMsg = this.receiveMsg.bind(this)
         this.setScroll = this.setScroll.bind(this)
@@ -54,7 +54,7 @@ class MsgFeed extends Component {
                             return (
                                 <Feed.Event>
                                     <Feed.Content>
-                                        <Feed.Summary className="border">
+                                        <Feed.Summary className="border" id = {this.state.email === msg.email? "currentUser": ""}>
                                             <Feed.Extra text>{ msg.message }</Feed.Extra>
                                             <p ref={ latestMsg } className="user">{ msg.from_user } { msg.timeStamp }</p>
                                         </Feed.Summary> 
@@ -70,7 +70,7 @@ class MsgFeed extends Component {
 
     componentDidMount() {
         this.receiveMsg()
-        if(this.state.data.length != 0) {
+        if(this.state.data.length !== 0) {
             this.setScroll()
         }
     }
