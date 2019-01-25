@@ -53,6 +53,10 @@ def add_SignUp(user_data):
         return False
 
 def addMsg(msgData):
+    """
+    addMsg(msgData)
+            Add new message and the user how sent to database.
+    """
     from_user = get_User(msgData['email'])
     session = DBSession()
     msg = ChatMessage(
@@ -64,6 +68,11 @@ def addMsg(msgData):
     session.close_all()
 
 def getMsg(id = None):
+    """
+    getMsg(id = None)
+            Returns all the messages if id is None
+            If id is not None it will return the message which matchs the id
+    """
     session = DBSession()
     if id:
         msgData = session.query(ChatMessage).filter_by(id = id).one_or_none()

@@ -28,10 +28,12 @@ def send_message():
                 crud.addMsg(data)
                 msg = crud.getMsg()
                 msg = msg[len(msg)-1]
+                from_user = crud.get_User(id = msg.from_user)
                 msgData = {
                     'message': msg.message,
                     'timeStamp': str(msg.timeStamp),
-                    'from_user': crud.get_User(id = msg.from_user).name
+                    'from_user': from_user.name,
+                    'email': from_user.email
                 }
                 pusher_client.trigger(
                     'chatConnection',
@@ -51,8 +53,8 @@ def syncChat():
             if session['loggedIn']:
                 message = crud.getMsg()
                 data = []
-                from_user = crud.get_User(id = msg.from_user)
                 for msg in message:
+                    from_user = crud.get_User(id = msg.from_user)
                     data.append({
                         'message': msg.message,
                         'timeStamp': msg.timeStamp.strftime('%d-%m-%Y %H:%M'),
