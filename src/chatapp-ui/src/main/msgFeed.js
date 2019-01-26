@@ -37,10 +37,20 @@ class MsgFeed extends Component {
             self.setState({
                 data: self.state.data.concat(data.message),
             })
+            // Scroll to the latest message
             self.setScroll()
         });
     }
     render() {
+        if(this.state.email === undefined || this.state.email === null) {
+            // Until all data get loaded
+            return (
+                <div className="chatBox" ref = { this.chatBox }>
+                    <p>Loading...</p>
+                </div>
+            )
+        }
+        
         return (
             <div className="chatBox" ref = { this.chatBox }>
                 <Feed>
@@ -51,6 +61,7 @@ class MsgFeed extends Component {
                                 // set React Ref for last element
                                 latestMsg = this.latestMsg
                             }
+                            // Rendering Each message
                             return (
                                 <Feed.Event>
                                     <Feed.Content>

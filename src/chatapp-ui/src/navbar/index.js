@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 
 class NavBar extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            loggedIn: this.props.loggedIn
-        }
-    }
     render() {
         return (
             <div className="container-fluid">
                 <nav className="navbar navbar-default">
                     <div className="container-fluid">
                         <div className="navbar-header">
-                            { this.state.loggedIn ?
+                            { this.props.loggedIn ?
                                 <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                                     <span className="sr-only">Toggle navigation</span>
                                     <span className="icon-bar"></span>
@@ -23,7 +17,7 @@ class NavBar extends Component {
                             }
                             <a className="navbar-brand" href="/"><strong>Chat App</strong></a>
                         </div>
-                        { this.state.loggedIn ?
+                        { this.props.loggedIn ?
                             <div id="navbar" className="navbar-collapse collapse">
                                 <ul className="nav navbar-nav navbar-right paddingul">
                                     <li>

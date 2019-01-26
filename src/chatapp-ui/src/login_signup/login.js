@@ -47,6 +47,7 @@ class Login extends Component {
         })
     }
     render() {
+        // Login Form
         return (
             <Form onSubmit={ this.formSubmit } className="form-horizontal">
                 <Form.Field className="form-group">

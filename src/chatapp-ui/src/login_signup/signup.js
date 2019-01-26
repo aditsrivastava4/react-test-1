@@ -49,6 +49,7 @@ class SignUp extends Component {
         })
     }
     render() {
+        // Sign Up Form
         return (
             <Form onSubmit={ this.formSubmit } className="form-horizontal">
                 <Form.Field className="form-group">
