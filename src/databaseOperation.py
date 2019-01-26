@@ -8,10 +8,11 @@ dbCredential = json.loads(
 	open('DBcredential.json', 'r').read()
 )
 dbName = dbCredential['DBname']
+dbUser = dbCredential['DBuser']
 password = dbCredential['password']
 
 # Handle all database operations
-engine = create_engine('postgresql://postgres:{}@localhost/{}'.format(password, dbName))
+engine = create_engine('postgresql://{}:{}@localhost/{}'.format(dbUser, password, dbName))
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 

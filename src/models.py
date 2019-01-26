@@ -10,6 +10,7 @@ dbCredential = json.loads(
 	open('DBcredential.json', 'r').read()
 )
 dbName = dbCredential['DBname']
+dbUser = dbCredential['DBuser']
 password = dbCredential['password']
 
 
@@ -58,5 +59,5 @@ class ChatMessage(Base):
 	from_user = Column(Integer, ForeignKey('user.id'))
 	user = relationship('User')
 
-engine = create_engine('postgresql://postgres:{}@localhost/{}'.format(password, dbName))
+engine = create_engine('postgresql://{}:{}@localhost/{}'.format(dbUser, password, dbName))
 Base.metadata.create_all(engine)
