@@ -53,7 +53,7 @@ $ cd react-test-1/src
 Run the following commands in order.
 ```
 $ cd react-test-1/scr/chatapp-ui
-$ yarn setupStatic or npm run setupStatic
+$ npm run setupStatic
 $ cd ..
 $ python3 views.py
 ```
