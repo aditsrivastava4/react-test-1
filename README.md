@@ -39,7 +39,7 @@ This project is to create a Chat Application for multiple users with multiple us
 $ git clone  https://github.com/aditsrivastava4/react-test-1.git
 $ cd react-test-1/src
 ```
-* In ```src/``` create a file name **DBcredential.json** and store your database name and password like the format below and save it.
+* In ```src/``` create a file name **DBcredential.json** and store your database name, user and password like the format below and save it.
 ```
 {
 	"DBname": "your-database-name",
