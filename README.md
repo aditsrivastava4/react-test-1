@@ -29,4 +29,27 @@ This project is to create a Chat Application for multiple users with multiple us
 * **login_signup(index.js)**: It is the Login and SignUp component it is used to render Login and SignUp forms.
 * **main(index.js)**: It is the Chat component used to render chat box and its form.
 
+
+## DataBase Setup
+
+* First Download and Install [PostgreSQL](https://www.postgresql.org/download/).
+* Then Setup a Database in PostgreSQL.
+* Then clone the repo 
+```
+$ git clone  https://github.com/aditsrivastava4/react-test-1.git
+$ cd react-test-1/src
+```
+* In ```src/``` create a file name **DBcredential.json** and store your database name and password like the format below.
+```
+{
+	"DBname": "your-database-name",
+   "DBuser": "your-database-user",
+	"password": "your-database-password"
+}
+```
 ## To Run
+
+Run the following commands in order.
+```
+$ cd react-test-1/scr/chatapp-ui
+```
