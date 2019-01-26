@@ -10,6 +10,7 @@ class MsgFeed extends Component {
             data: this.props.data,
             email: Cookies.get('email')
         }
+        this.getUserEmail = this.getUserEmail.bind(this)
         this.receiveMsg = this.receiveMsg.bind(this)
         this.setScroll = this.setScroll.bind(this)
         // React Ref for chat box
@@ -38,19 +39,14 @@ class MsgFeed extends Component {
                 data: self.state.data.concat(data.message),
             })
             // Scroll to the latest message
+            if(self.state.email === undefined || self.state.email === null) {
+                self.getUserEmail()
+            }
             self.setScroll()
         });
     }
-    render() {
-        if(this.state.email === undefined || this.state.email === null) {
-            // Until all data get loaded
-            return (
-                <div className="chatBox" ref = { this.chatBox }>
-                    <p>Loading...</p>
-                </div>
-            )
-        }
-        
+    
+    render() {        
         return (
             <div className="chatBox" ref = { this.chatBox }>
                 <Feed>
@@ -77,6 +73,12 @@ class MsgFeed extends Component {
                 </Feed>
             </div>
         )
+    }
+
+    getUserEmail() {
+        this.setState({
+            email: Cookies.get('email')
+        })
     }
 
     componentDidMount() {
