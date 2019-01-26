@@ -11,7 +11,7 @@ This project is to create a Chat Application for multiple users with multiple us
 * **databaseOperation.py**: Handle all Database Operations.
 * **views.py**: It is the main module which used to run the Flask server.
 * **LoginSignUp.py**: Handle all server-side Login and SignUp tasks.
-* **Chat.py**: Handle all server-side messaging sending tasks.
+* **Chat.py**: Handle all server-side message sending tasks.
    
 ##### Dependencies
 * **Flask** version 1.0.2
