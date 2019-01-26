@@ -1,9 +1,17 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, User, ChatMessage
+import json
+
+
+dbCredential = json.loads(
+	open('DBcredential.json', 'r').read()
+)
+dbName = dbCredential['DBname']
+password = dbCredential['password']
 
 # Handle all database operations
-engine = create_engine('postgresql://postgres:{}@localhost/chatdata'.format('94532@dit'))
+engine = create_engine('postgresql://postgres:{}@localhost/{}'.format(password, dbName))
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 
@@ -18,7 +26,7 @@ def get_User(email = None, id = None):
     elif id:
         data = session.query(User).filter_by(id = id).one_or_none()
     else:
-        raise TypeError('get_User() Requires at 1 Argument(email or id)')
+        raise TypeError('get_User() Requires atleast 1 Argument(email or id)')
     session.close_all()
     return data
 

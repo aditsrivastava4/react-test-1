@@ -4,9 +4,16 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 from passlib.hash import pbkdf2_sha256
 import datetime
+import json
+
+dbCredential = json.loads(
+	open('DBcredential.json', 'r').read()
+)
+dbName = dbCredential['DBname']
+password = dbCredential['password']
+
 
 Base = declarative_base()
-
 
 class User(Base):
 	"""
@@ -27,7 +34,7 @@ class User(Base):
 	id = Column(Integer, primary_key=True)
 	name = Column(String)
 	email = Column(String)
-	password_hash = Column(String(200))
+	password_hash = Column(String(255))
 
 	def hash_password(self, password):
 		self.password_hash = pbkdf2_sha256.hash(password)
@@ -37,12 +44,19 @@ class User(Base):
 
 
 class ChatMessage(Base):
-    __tablename__ = 'chat_message'
-    id = Column(Integer, primary_key=True)
-    message = Column(String)
-    timeStamp = Column(DateTime, default=datetime.datetime.now)
-    from_user = Column(Integer, ForeignKey('user.id'))
-    user = relationship('User')
+	"""
+	class ChatMessage will store all messages and the user who send it
+	Parameters
+	message: Store message(String)
+	timeStamp: Store TimeStamp when the message was sent(DateTime)
+	from_user: Foreign Key from User model
+	"""
+	__tablename__ = 'chat_message'
+	id = Column(Integer, primary_key=True)
+	message = Column(String)
+	timeStamp = Column(DateTime, default=datetime.datetime.now)
+	from_user = Column(Integer, ForeignKey('user.id'))
+	user = relationship('User')
 
-engine = create_engine('postgresql://postgres:{}@localhost/chatdata'.format('94532@dit'))
+engine = create_engine('postgresql://postgres:{}@localhost/{}'.format(password, dbName))
 Base.metadata.create_all(engine)

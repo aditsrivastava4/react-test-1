@@ -4,7 +4,7 @@ import databaseOperation as crud
 from flask import session
 import pusher, json
 
-chat = Blueprint('google', __name__)
+chat = Blueprint('chat', __name__)
 
 pusher_client = pusher.Pusher(
     app_id='694873',
@@ -61,7 +61,6 @@ def syncChat():
                         'from_user': from_user.name,
                         'email': from_user.email
                     })
-                
                 response = make_response(jsonify(data))
                 return response
         else:
