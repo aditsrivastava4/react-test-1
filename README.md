@@ -13,3 +13,20 @@ This project is to create a Chat Application for multiple users with multiple us
 * **LoginSignUp.py**: Handle all server-side Login and SignUp tasks.
 * **Chat.py**: Handle all server-side messaging sending tasks.
    
+##### Dependencies
+* **Flask** version 1.0.2
+* **SQLAlchemy** version 1.2.16
+* **passlib** version 1.7.1
+* **psycopg2** version 2.7.6.1
+
+## Frontend
+### [ReactJS](https://reactjs.org)
+
+#### JavaScript Modules
+
+* **App.js**: It is the main JS module which handle all the dynamic changes to the UI.
+* **navbar(index.js)**: It is the NavBar component it is used to render NavBar.
+* **login_signup(index.js)**: It is the Login and SignUp component it is used to render Login and SignUp forms.
+* **main(index.js)**: It is the Chat component used to render chat box and its form.
+
+## To Run
