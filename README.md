@@ -1,6 +1,6 @@
 # Chat Application
 
-This project is to create a Chat Application for multiple users with multiple users (many to many).
+This project is to create a Chat Application for multiple users with multiple users (many to many). Using [Pusher API](https://pusher.com/) for realtime communication between app and server.
 
 ## Backend
 ### [Flask](http://flask.pocoo.org/) 
