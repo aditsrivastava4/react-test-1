@@ -39,17 +39,21 @@ This project is to create a Chat Application for multiple users with multiple us
 $ git clone  https://github.com/aditsrivastava4/react-test-1.git
 $ cd react-test-1/src
 ```
-* In ```src/``` create a file name **DBcredential.json** and store your database name and password like the format below.
+* In ```src/``` create a file name **DBcredential.json** and store your database name and password like the format below and save it.
 ```
 {
 	"DBname": "your-database-name",
-   "DBuser": "your-database-user",
+	"DBuser": "your-database-user",
 	"password": "your-database-password"
 }
 ```
+
 ## To Run
 
 Run the following commands in order.
 ```
 $ cd react-test-1/scr/chatapp-ui
+$ yarn setupStatic
+$ cd ..
+$ python3 views.py
 ```
