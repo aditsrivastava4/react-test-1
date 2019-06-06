@@ -36,8 +36,8 @@ This project is to create a Chat Application for multiple users with multiple us
 * Then Setup a Database in PostgreSQL.
 * Then clone the repo 
 ```
-$ git clone  https://github.com/aditsrivastava4/react-test-1.git
-$ cd react-test-1/src
+$ git clone  https://github.com/aditsrivastava4/chat-app.git
+$ cd chat-app/src
 ```
 * In ```src/``` create a file name **DBcredential.json** and store your database name, user and password like the format below and save it.
 ```
@@ -52,7 +52,7 @@ $ cd react-test-1/src
 
 Run the following commands in order.
 ```
-$ cd react-test-1/scr/chatapp-ui
+$ cd chat-app/scr/chatapp-ui
 $ npm run setupStatic
 $ cd ..
 $ python3 views.py
